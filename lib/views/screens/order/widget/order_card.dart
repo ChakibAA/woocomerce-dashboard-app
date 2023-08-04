@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../order_details_scren.dart';
+import '../order_details_screen.dart';
 
 class OrderCard extends StatelessWidget {
   const OrderCard({
@@ -19,8 +18,10 @@ class OrderCard extends StatelessWidget {
             tileColor: Colors.grey[200],
             title: const Text("N° : 1"),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const SearchInfo()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const OrederDetailsScreen()));
             },
             trailing: const Icon(
               Icons.keyboard_arrow_right,

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "533672606027",
+    "project_id": "woocomerce-dashboard",
+    "storage_bucket": "woocomerce-dashboard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533672606027:android:ff0c8892512708ae59d0ce",
+        "android_client_info": {
+          "package_name": "com.example.woocomerceadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533672606027-265f1f27g8j2p8usccrrtqns1o2d4ld6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2w40H6lWOKubET_dIi5ppsTgHNTNhiZY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533672606027-265f1f27g8j2p8usccrrtqns1o2d4ld6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
