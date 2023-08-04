@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:woocomerceadmin/model/order.dart';
 import 'package:woocomerceadmin/model/shop.dart';
 import 'package:woocomerceadmin/views/screens/error_screen.dart';
+import 'package:woocomerceadmin/views/screens/order/order_details_screen.dart';
 import 'package:woocomerceadmin/views/screens/shop/shop_list_screen.dart';
 import 'package:woocomerceadmin/views/screens/order/orders_screen.dart';
 import 'package:woocomerceadmin/utils/routes/app_routes.dart';
@@ -31,6 +33,18 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.orders,
       name: AppRoutes.orders,
+      routes: [
+        GoRoute(
+          path: AppRoutes.ordersDetails,
+          name: AppRoutes.ordersDetails,
+          builder: (BuildContext context, GoRouterState state) {
+            Order order = state.extra as Order;
+            return OrederDetailsScreen(
+              order: order,
+            );
+          },
+        ),
+      ],
       builder: (BuildContext context, GoRouterState state) {
         Shop shop = state.extra as Shop;
         return OrdersScreen(

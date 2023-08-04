@@ -15,15 +15,15 @@ class OrderService {
   Future<AppResponse<Order>> getOrders({String? status, int page = 1}) async {
     AppResponse<Order> result = AppResponse<Order>();
     try {
-      // String url =
-      //     "${shop.url}${AppConstants.getOrdersUrl}?token=${shop.key}&page=${page.toString()}";
+      String url =
+          "http://10.0.2.2:10018${AppConstants.getOrdersUrl}?token=${shop.key}&page=${page.toString()}";
 
-      // if (status != null) {
-      //   url += '&status=$status';
-      // }
+      if (status != null) {
+        url += '&status=$status';
+      }
 
       var response = await Dio().get(
-        'http://10.0.2.2:3000/wp-json/dashboard/v1/orders?per_page=2&token=chakib',
+        url,
         options: Options(
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
@@ -31,7 +31,6 @@ class OrderService {
         ),
       );
 
-      print(response.statusCode);
       if (response.statusCode == 200) {
         result.data = (response.data as List)
             .map(
@@ -39,7 +38,7 @@ class OrderService {
             )
             .toList();
         result.success = true;
-        print(result.data!.length);
+
         return result;
       } else {
         result.success = false;

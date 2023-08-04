@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:woocomerceadmin/utils/routes/app_routes.dart';
 
-import '../order_details_screen.dart';
+import '../../../../model/order.dart';
 
 class OrderCard extends StatelessWidget {
   const OrderCard({
     super.key,
+    required this.order,
   });
+
+  final Order order;
 
   @override
   Widget build(BuildContext context) {
@@ -16,24 +21,24 @@ class OrderCard extends StatelessWidget {
           Card(
               child: ListTile(
             tileColor: Colors.grey[200],
-            title: const Text("N° : 1"),
+            title: Text("N° : ${order.id}"),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const OrederDetailsScreen()));
+              context.pushNamed(AppRoutes.ordersDetails, extra: order);
             },
             trailing: const Icon(
               Icons.keyboard_arrow_right,
             ),
           )),
-          const InfoCard(label: 'Client :', value: 'Chakib'),
-          const InfoCard(
+          InfoCard(
+              label: 'Client :',
+              value: '${order.billing!.firstName} ${order.billing!.lastName}'),
+          InfoCard(
             label: 'Status',
-            value: 'Pending',
+            value: order.status!,
             valueColor: Colors.amber,
           ),
-          const InfoCard(label: 'Total : ', value: '500 DA'),
+          InfoCard(
+              label: 'Total : ', value: '${order.total!} ${order.currency}'),
         ],
       ),
     );

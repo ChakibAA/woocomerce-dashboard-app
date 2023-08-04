@@ -3,26 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:woocomerceadmin/views/screens/order/widget/details_info.dart';
 
+import '../../../model/order.dart';
 import 'widget/sperator.dart';
 import 'widget/status_details_info.dart';
 
-class OrederDetailsScreen extends StatefulWidget {
-  const OrederDetailsScreen({
-    Key? key,
-  }) : super(key: key);
+class OrederDetailsScreen extends StatelessWidget {
+  const OrederDetailsScreen({Key? key, required this.order}) : super(key: key);
 
-  @override
-  State<OrederDetailsScreen> createState() => _OrederDetailsScreenState();
-}
+  final Order order;
 
-class _OrederDetailsScreenState extends State<OrederDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: const FloatingButton(),
       appBar: AppBar(
-        title: const Text(
-          'Commande n° : 1',
+        title: Text(
+          'Commande n° : ${order.id}',
         ),
       ),
       body: Container(
@@ -32,11 +28,16 @@ class _OrederDetailsScreenState extends State<OrederDetailsScreen> {
             const Separator(
               title: 'Details de la commande',
             ),
-            const DetailsInfo(label: 'Total' ' :', value: '500 DA'),
-            const DetailsInfo(label: 'Date de la commande' ' :', value: ''),
-            const DetailsInfo(label: 'Paiement par' ' :', value: 'COD'),
-            const DetailsInfo(
-                label: 'Méthode de livraison' ' :', value: 'yalidin'),
+            DetailsInfo(
+                label: 'Total' ' :',
+                value: ' ${order.total}  ${order.currency!}'),
+            DetailsInfo(
+                label: 'Date de la commande' ' :', value: order.createdAt!),
+            DetailsInfo(
+                label: 'Paiement par' ' :', value: order.paymentMethod!),
+            DetailsInfo(
+                label: 'Méthode de livraison' ' :',
+                value: order.shippingMethod!),
             const StatusDetailsInfo(status: 'Pending'),
             const SizedBox(
               height: 12,
@@ -44,14 +45,19 @@ class _OrederDetailsScreenState extends State<OrederDetailsScreen> {
             const Separator(
               title: 'Client',
             ),
-            const DetailsInfo(label: 'Nom' ' :', value: 'Chakib'),
-            const DetailsInfo(label: 'Addresse' ' :', value: 'alger'),
-            const DetailsInfo(label: 'email' ' :', value: 'chakib@gmail.com'),
+            DetailsInfo(label: 'Nom' ' :', value: order.billing!.firstName!),
+            DetailsInfo(label: 'Prénom' ' :', value: order.billing!.firstName!),
+            DetailsInfo(
+                label: 'Addresse' ' :', value: order.billing!.address1!),
+            DetailsInfo(label: 'Ville' ' :', value: order.billing!.city!),
+            DetailsInfo(
+                label: 'Code postal' ' :', value: order.billing!.postcode!),
+            DetailsInfo(label: 'email' ' :', value: order.billing!.email!),
             InkWell(
               onTap: () async {},
-              child: const DetailsInfo(
+              child: DetailsInfo(
                 label: 'Numero de telephone' ' :',
-                value: '05555555',
+                value: order.billing!.phone!,
                 textColor: Colors.blueAccent,
               ),
             ),

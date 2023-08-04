@@ -21,7 +21,6 @@ class OrdersScreen extends StatelessWidget {
       create: (context) => OrderBloc(shop),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.red,
           centerTitle: true,
           title: Text(shop.name!),
         ),
@@ -47,9 +46,10 @@ class OrdersScreen extends StatelessWidget {
                       )),
                   Expanded(
                       child: ListView.builder(
+                          padding: const EdgeInsets.only(bottom: 12),
                           itemCount: state.data.length,
                           itemBuilder: (context, index) {
-                            return const OrderCard();
+                            return OrderCard(order: state.data[index]);
                           }))
                 ],
               );
