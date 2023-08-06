@@ -1,4 +1,4 @@
-import 'package:woocomerceadmin/model/product.dart';
+import 'package:woocomerceadmin/models/product.dart';
 
 class Order {
   int? id;
@@ -11,7 +11,7 @@ class Order {
   Billing? billing;
   Shipping? shipping;
   String? paymentMethod;
-  List<Products>? products;
+  List<Product>? products;
 
   Order(
       {this.id,
@@ -40,9 +40,9 @@ class Order {
         json['shipping'] != null ? Shipping.fromJson(json['shipping']) : null;
     paymentMethod = json['payment_method'];
     if (json['products'] != null) {
-      products = <Products>[];
+      products = <Product>[];
       json['products'].forEach((v) {
-        products!.add(Products.fromJson(v));
+        products!.add(Product.fromJson(v));
       });
     }
   }

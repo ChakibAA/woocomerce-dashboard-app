@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:woocomerceadmin/blocs/shop_bloc/shop_bloc.dart';
-import 'package:woocomerceadmin/model/shop.dart';
+import 'package:woocomerceadmin/models/shop.dart';
 import 'package:woocomerceadmin/utils/validator.dart';
 
 class AddShopScreen extends StatelessWidget {

@@ -1,5 +1,6 @@
 class AppConstants {
   static const String getOrdersUrl = "/wp-json/dashboard/v1/orders";
+  static const String getOrderIDUrl = "/wp-json/dashboard/v1/order";
   static const String updateOrdersStatusUrl =
       "/wp-json/dashboard/v1/orders/status";
 

@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 import 'package:woocomerceadmin/data/app_response.dart';
-import 'package:woocomerceadmin/model/shop.dart';
+import 'package:woocomerceadmin/models/shop.dart';
 import 'package:woocomerceadmin/services/shop_service.dart';
 
 import '../../views/widgets/custom_toast.dart';

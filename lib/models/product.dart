@@ -1,12 +1,12 @@
-class Products {
+class Product {
   int? id;
   String? name;
   String? price;
   int? quantity;
 
-  Products({this.id, this.name, this.price, this.quantity});
+  Product({this.id, this.name, this.price, this.quantity});
 
-  Products.fromJson(Map<String, dynamic> json) {
+  Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     price = json['price'];

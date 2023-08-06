@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../model/shop.dart';
+import '../../../../models/shop.dart';
 import '../../../../utils/routes/app_routes.dart';
 
 class ShopButton extends StatelessWidget {

@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:woocomerceadmin/model/order.dart';
+import 'package:woocomerceadmin/models/order.dart';
 import 'package:woocomerceadmin/services/order_service.dart';
 
 import '../../data/app_response.dart';
-import '../../model/shop.dart';
+import '../../models/shop.dart';
 import '../../views/widgets/custom_toast.dart';
 
 part 'order_event.dart';
@@ -15,16 +15,44 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   OrderBloc(this.shop) : super(OrderInitial()) {
     final OrderService orderService = OrderService(shop: shop);
 
-    on<FetchOrder>((event, emit) async {
-      emit(OrderLoading());
+    on<FetchOrders>((event, emit) async {
+      String? status = event.status;
+      int page = event.page ?? 1;
 
-      AppResponse<Order> response = await orderService.getOrders();
+      if (page == 1) {
+        emit(OrderLoading());
+      } else {
+        emit(OrderLoadingPag(data: event.orders!));
+      }
+
+      AppResponse<Order> response =
+          await orderService.getOrders(status: status, page: page);
 
       if (response.success == true) {
-        emit(OrderLoaded(response.data!));
+        if (response.data == null) {
+          if (page == 1) {
+            emit(OrderEmpty());
+          } else {
+            emit(OrderLoaded(data: event.orders!, stopPag: true));
+          }
+        } else if (response.data!.isEmpty) {
+          if (page == 1) {
+            emit(OrderEmpty());
+          } else {
+            emit(OrderLoaded(data: event.orders!, stopPag: true));
+          }
+        } else {
+          List<Order>? data = event.orders;
+          if (data != null && data.isNotEmpty) {
+            data.addAll(response.data!);
+            emit(OrderLoaded(data: data));
+          } else {
+            emit(OrderLoaded(data: response.data!));
+          }
+        }
       } else {
         AppToast.showCustomToast();
-        emit(OrderError(response.message!));
+        emit(OrderError());
       }
     });
 
@@ -41,15 +69,15 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         AppResponse<Order> response = await orderService.getOrders();
 
         if (response.success == true) {
-          emit(OrderLoaded(response.data!));
+          emit(OrderLoaded(data: response.data!));
         } else {
           AppToast.showCustomToast();
-          emit(OrderError(response.message!));
+          emit(OrderError());
         }
       } else {
         AppToast.showCustomToast();
 
-        emit(OrderError(response.message!));
+        emit(OrderError());
       }
     });
   }

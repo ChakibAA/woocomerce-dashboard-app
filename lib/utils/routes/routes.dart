@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:woocomerceadmin/model/order.dart';
-import 'package:woocomerceadmin/model/shop.dart';
+import 'package:woocomerceadmin/models/order.dart';
+import 'package:woocomerceadmin/models/shop.dart';
 import 'package:woocomerceadmin/views/screens/error_screen.dart';
 import 'package:woocomerceadmin/views/screens/order/order_details_screen.dart';
 import 'package:woocomerceadmin/views/screens/shop/shop_list_screen.dart';

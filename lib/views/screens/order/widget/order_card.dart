@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:woocomerceadmin/utils/routes/app_routes.dart';
 
-import '../../../../model/order.dart';
+import '../../../../models/order.dart';
 
 class OrderCard extends StatelessWidget {
   const OrderCard({
@@ -35,7 +35,6 @@ class OrderCard extends StatelessWidget {
           InfoCard(
             label: 'Status',
             value: order.status!,
-            valueColor: Colors.amber,
           ),
           InfoCard(
               label: 'Total : ', value: '${order.total!} ${order.currency}'),

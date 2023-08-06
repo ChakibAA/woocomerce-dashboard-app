@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:woocomerceadmin/data/app_response.dart';
 import 'package:woocomerceadmin/utils/constant.dart';
 
-import '../model/shop.dart';
+import '../models/shop.dart';
 
 class ShopService {
   late SharedPreferences prefs;
