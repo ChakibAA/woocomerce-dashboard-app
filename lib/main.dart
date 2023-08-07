@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:woocomerceadmin/blocs/shop_bloc/shop_bloc.dart';
+import 'package:woocomerceadmin/cubits/shop_cubit/shop_cubit.dart';
 import 'package:woocomerceadmin/utils/theme.dart';
 
 import 'config/notification/notification_api.dart';
@@ -50,14 +51,21 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ShopBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ShopBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ShopCubit(),
+        ),
+      ],
       child: MaterialApp.router(
         routerConfig: router,
         debugShowCheckedModeBanner: false,
         theme: Themes.light,
         locale: const Locale('fr'),
-        title: 'Woocomoerce Dashboard C',
+        title: 'C dashboard fo woocomerce',
       ),
     );
   }

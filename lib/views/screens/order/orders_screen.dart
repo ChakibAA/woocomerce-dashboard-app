@@ -54,7 +54,6 @@ class _OrdersScreenState extends State<OrdersScreen> {
           title: Text('Boutique ${widget.shop.name!}'),
         ),
         body: BlocConsumer<OrderBloc, OrderState>(
-          bloc: orderBloc,
           listener: (context, state) {
             if (state is OrderError) {
               context.goNamed(AppRoutes.errorScreen);

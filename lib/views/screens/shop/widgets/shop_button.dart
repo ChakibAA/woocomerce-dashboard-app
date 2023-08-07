@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../cubits/shop_cubit/shop_cubit.dart';
 import '../../../../models/shop.dart';
 import '../../../../utils/routes/app_routes.dart';
 
@@ -17,7 +19,10 @@ class ShopButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () => context.pushNamed(AppRoutes.orders, extra: shop),
+      onTap: () {
+        context.read<ShopCubit>().setShop(shop);
+        context.pushNamed(AppRoutes.orders, extra: shop);
+      },
       style: ListTileStyle.list,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       tileColor: Colors.blueGrey.shade700,

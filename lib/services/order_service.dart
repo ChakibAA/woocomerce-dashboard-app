@@ -88,9 +88,9 @@ class OrderService {
 
     try {
       String url =
-          "${shop.url}${AppConstants.getOrdersUrl}?token=${shop.key}&order_id=$id&new_order_status=$status";
+          "http://10.0.2.2:10018${AppConstants.updateOrdersStatusUrl}?token=${shop.key}&order_id=$id&new_order_status=$status";
 
-      var response = await Dio().get(
+      var response = await Dio().put(
         url,
         options: Options(
           headers: {
@@ -104,12 +104,13 @@ class OrderService {
         return result;
       } else {
         result.success = false;
-        result.message = "Ce site n'existe deja";
+
         return result;
       }
     } catch (e) {
+      print(e);
       result.success = false;
-      result.message = "Ce site n'existe deja";
+
       return result;
     }
   }
