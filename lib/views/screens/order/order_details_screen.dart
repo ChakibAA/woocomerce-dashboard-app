@@ -35,7 +35,7 @@ class OrederDetailsScreen extends StatelessWidget {
           DetailsInfo(label: 'Paiement par' ' :', value: order.paymentMethod!),
           DetailsInfo(
               label: 'Méthode de livraison' ' :', value: order.shippingMethod!),
-          const StatusDetailsInfo(status: 'Pending'),
+          StatusDetailsInfo(status: order.status!),
           const SizedBox(
             height: 12,
           ),

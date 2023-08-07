@@ -25,6 +25,7 @@ class AddShopScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: Card(
+              color: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0),
               ),
@@ -78,7 +79,6 @@ class AddShopScreen extends StatelessWidget {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueAccent,
                           padding: const EdgeInsets.symmetric(
                               vertical: 15.0, horizontal: 32),
                           shape: RoundedRectangleBorder(

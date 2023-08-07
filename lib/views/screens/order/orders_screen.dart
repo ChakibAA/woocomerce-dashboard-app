@@ -7,9 +7,9 @@ import 'package:woocomerceadmin/views/widgets/custom_progress_indicator.dart';
 import 'package:woocomerceadmin/views/widgets/custom_toast.dart';
 
 import '../../../blocs/order_bloc/order_bloc.dart';
-import '../../../models/filter.dart';
 import '../../../models/order.dart';
 import '../../../models/shop.dart';
+import '../../../utils/constant.dart';
 import '../../../utils/routes/app_routes.dart';
 import '../../widgets/custom_field.dart';
 
@@ -51,7 +51,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text(widget.shop.name!),
+          title: Text('Boutique ${widget.shop.name!}'),
         ),
         body: BlocConsumer<OrderBloc, OrderState>(
           bloc: orderBloc,
@@ -80,7 +80,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         },
                         icon: const Icon(Icons.tune),
                         itemBuilder: (BuildContext context) {
-                          return sortByOptions.map((item) {
+                          return AppConstants().sortByOptions.map((item) {
                             return PopupMenuItem(
                                 value: item.value, child: Text(item.text));
                           }).toList();
@@ -95,7 +95,6 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       child: CustomField(
                         hintText: 'ID',
                         onSubmit: (value) async {
-                          print(value);
                           if (value == null) {
                             AppToast.showCustomToast(
                                 msg: "Veuillez indiquer l'id de la commande");
@@ -109,7 +108,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                           }
                           OrderService orderService =
                               OrderService(shop: widget.shop);
-                          Order? order = await orderService.getOrderID(60);
+                          Order? order = await orderService.getOrderID(value);
 
                           if (order == null) {
                             AppToast.showCustomToast(
@@ -130,7 +129,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             },
                             icon: const Icon(Icons.tune),
                             itemBuilder: (BuildContext context) {
-                              return sortByOptions.map((item) {
+                              return AppConstants().sortByOptions.map((item) {
                                 return PopupMenuItem(
                                     value: item.value, child: Text(item.text));
                               }).toList();

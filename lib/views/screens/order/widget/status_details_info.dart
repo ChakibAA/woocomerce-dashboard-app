@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../utils/constant.dart';
+
 class StatusDetailsInfo extends StatelessWidget {
   const StatusDetailsInfo({
     Key? key,
@@ -26,12 +28,12 @@ class StatusDetailsInfo extends StatelessWidget {
                   style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                 ),
                 Text(
-                  status,
-                  style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      // color: statusColor[status],
-                      color: Colors.red),
+                  AppConstants().tradStatus[status]!,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: AppConstants().statusColor[status],
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -40,8 +42,8 @@ class StatusDetailsInfo extends StatelessWidget {
               height: 12,
             ),
             LinearProgressIndicator(
-              value: 50,
-              color: Colors.red,
+              value: AppConstants().orderStatusValues[status],
+              color: AppConstants().statusColor[status],
               backgroundColor: Colors.grey[300],
             )
           ],

@@ -19,11 +19,11 @@ class ShopButton extends StatelessWidget {
     return ListTile(
       onTap: () => context.pushNamed(AppRoutes.orders, extra: shop),
       style: ListTileStyle.list,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       tileColor: Colors.blueGrey.shade700,
       textColor: Colors.white,
       iconColor: Colors.white,
-      title: Text("Shop $index : ${shop.name}"),
+      title: Text("Boutique $index : ${shop.name}"),
       trailing: const Icon(Icons.arrow_forward),
     );
   }

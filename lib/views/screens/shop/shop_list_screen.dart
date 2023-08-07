@@ -21,7 +21,7 @@ class ShopListScreen extends StatelessWidget {
               context.goNamed(AppRoutes.addShop);
             }),
         appBar: AppBar(
-          title: const Text("Ecom"),
+          title: const Text("C dashboard for woocomerce"),
           automaticallyImplyLeading: false,
         ),
         body: const ListShopView());

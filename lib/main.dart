@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:woocomerceadmin/blocs/shop_bloc/shop_bloc.dart';
+import 'package:woocomerceadmin/utils/theme.dart';
 
 import 'config/notification/notification_api.dart';
 import 'firebase_options.dart';
@@ -54,6 +55,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp.router(
         routerConfig: router,
         debugShowCheckedModeBanner: false,
+        theme: Themes.light,
         locale: const Locale('fr'),
         title: 'Woocomoerce Dashboard C',
       ),
