@@ -65,8 +65,6 @@ class OrderService {
           },
         ),
       );
-      print(url);
-      print(response.data);
 
       if (response.statusCode == 200) {
         Order data = Order.fromJson(response.data[0]);

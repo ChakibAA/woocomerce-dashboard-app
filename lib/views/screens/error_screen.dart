@@ -24,7 +24,6 @@ class ErrorScreen extends StatelessWidget {
                     context.goNamed(AppRoutes.shopList);
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueAccent,
                     padding: const EdgeInsets.symmetric(
                         vertical: 15.0, horizontal: 32),
                     shape: RoundedRectangleBorder(

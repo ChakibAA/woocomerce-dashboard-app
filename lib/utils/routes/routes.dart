@@ -39,6 +39,7 @@ final GoRouter router = GoRouter(
           name: AppRoutes.ordersDetails,
           builder: (BuildContext context, GoRouterState state) {
             Order order = state.extra as Order;
+
             return OrederDetailsScreen(
               order: order,
             );
