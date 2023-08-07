@@ -55,8 +55,9 @@ class OrderService {
   Future<Order?> getOrderID(String id) async {
     try {
       String url =
-          "http://10.0.2.2:10018${AppConstants.getOrdersUrl}?token=${shop.key}&query_id=$id";
+          "http://10.0.2.2:10018${AppConstants.getOrderIDUrl}?token=${shop.key}&query_id=$id";
 
+      print(url);
       var response = await Dio().get(
         url,
         options: Options(
@@ -67,7 +68,7 @@ class OrderService {
       );
 
       if (response.statusCode == 200) {
-        Order data = Order.fromJson(response.data[0]);
+        Order data = Order.fromJson(response.data);
 
         return data;
       }

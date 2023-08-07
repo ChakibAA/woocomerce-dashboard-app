@@ -115,6 +115,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                 msg: "Cette commande n'existe pas");
                             return;
                           }
+
                           // ignore: use_build_context_synchronously
                           context.pushNamed(AppRoutes.ordersDetails,
                               extra: order);
