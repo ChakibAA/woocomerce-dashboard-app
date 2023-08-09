@@ -35,6 +35,5 @@ class NotificationApi {
         message.notification!.title,
         message.notification!.body,
         platformChannelSpecifics);
-    print(message.notification!.title);
   }
 }

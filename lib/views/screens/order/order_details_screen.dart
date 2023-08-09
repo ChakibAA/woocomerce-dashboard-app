@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:woocomerceadmin/cubits/shop_cubit/shop_cubit.dart';
 import 'package:woocomerceadmin/data/app_response.dart';
 import 'package:woocomerceadmin/services/order_service.dart';
@@ -140,14 +141,22 @@ class _OrederDetailsScreenState extends State<OrederDetailsScreen> {
                     value: widget.order.billing!.postcode!),
                 DetailsInfo(
                     label: 'email' ' :', value: widget.order.billing!.email!),
-                InkWell(
-                  onTap: () async {},
-                  child: DetailsInfo(
-                    label: 'Numero de telephone' ' :',
-                    value: widget.order.billing!.phone!,
-                    textColor: Colors.blueAccent,
-                  ),
-                ),
+                widget.order.billing!.phone == null
+                    ? Container()
+                    : InkWell(
+                        onTap: () async {
+                          final Uri callLaunchUri = Uri(
+                            scheme: 'tel',
+                            path: widget.order.billing!.phone!,
+                          );
+                          launchUrl(callLaunchUri);
+                        },
+                        child: DetailsInfo(
+                          label: 'Numero de telephone' ' :',
+                          value: widget.order.billing!.phone!,
+                          textColor: Colors.blueAccent,
+                        ),
+                      ),
                 const Separator(
                   title: 'Produits',
                 ),

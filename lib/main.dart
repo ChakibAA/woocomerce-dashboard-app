@@ -57,8 +57,6 @@ class _MyAppState extends State<MyApp> {
         await NotificationApi.pushNotification(event);
       });
     }
-
-    print(await FirebaseMessaging.instance.getToken());
   }
 
   @override
