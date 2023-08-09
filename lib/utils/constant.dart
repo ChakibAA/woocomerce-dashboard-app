@@ -9,6 +9,7 @@ class AppConstants {
   static const String getOrderIDUrl = "/wp-json/dashboard/v1/order";
   static const String updateOrdersStatusUrl =
       "/wp-json/dashboard/v1/orders/status";
+  static const String sendTokenNotif = "/wp-json/dashboard/v1/admin/token";
 
   static const String addShopLocalUrl = "shops";
 

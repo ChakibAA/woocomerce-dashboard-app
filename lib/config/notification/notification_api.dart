@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -7,7 +9,7 @@ class NotificationApi {
   static void init() {
     _notification.initialize(
       const InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+        android: AndroidInitializationSettings('@mipmap/launcher_icon'),
         iOS: DarwinInitializationSettings(),
       ),
     );
@@ -29,9 +31,10 @@ class NotificationApi {
       iOS: iOSPlatformChannelSpecifics,
     );
     await _notification.show(
-        DateTime.now().millisecondsSinceEpoch,
+        Random().nextInt(1000),
         message.notification!.title,
         message.notification!.body,
         platformChannelSpecifics);
+    print(message.notification!.title);
   }
 }

@@ -57,7 +57,6 @@ class OrderService {
       String url =
           "http://10.0.2.2:10018${AppConstants.getOrderIDUrl}?token=${shop.key}&query_id=$id";
 
-      print(url);
       var response = await Dio().get(
         url,
         options: Options(
@@ -108,7 +107,6 @@ class OrderService {
         return result;
       }
     } catch (e) {
-      print(e);
       result.success = false;
 
       return result;

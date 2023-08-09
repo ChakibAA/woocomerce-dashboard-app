@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:woocomerceadmin/blocs/shop_bloc/shop_bloc.dart';
 import 'package:woocomerceadmin/cubits/shop_cubit/shop_cubit.dart';
 import 'package:woocomerceadmin/utils/theme.dart';
@@ -41,12 +42,23 @@ class _MyAppState extends State<MyApp> {
   }
 
 //create a method that handles notification
-  void notificationHandler() {
-    // ignore: unused_local_variable
-    FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-    FirebaseMessaging.onMessage.listen((event) async {
-      await NotificationApi.pushNotification(event);
-    });
+  void notificationHandler() async {
+    PermissionStatus status = await Permission.notification.status;
+
+    if (status.isDenied) {
+      PermissionStatus status_ = await Permission.notification.request();
+      if (!status_.isDenied) {
+        FirebaseMessaging.onMessage.listen((event) async {
+          await NotificationApi.pushNotification(event);
+        });
+      }
+    } else {
+      FirebaseMessaging.onMessage.listen((event) async {
+        await NotificationApi.pushNotification(event);
+      });
+    }
+
+    print(await FirebaseMessaging.instance.getToken());
   }
 
   @override

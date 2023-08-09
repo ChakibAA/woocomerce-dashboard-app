@@ -1,6 +1,8 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:woocomerceadmin/services/notification_service.dart';
 import 'package:woocomerceadmin/services/order_service.dart';
 import 'package:woocomerceadmin/views/screens/order/widget/order_card.dart';
 import 'package:woocomerceadmin/views/widgets/custom_progress_indicator.dart';
@@ -30,9 +32,20 @@ class _OrdersScreenState extends State<OrdersScreen> {
   String status = '';
   int page = 1;
 
+  late NotificationService notificationService;
+
+  sendTokenNotif() async {
+    String? token = await FirebaseMessaging.instance.getToken();
+    if (token == null) return;
+    notificationService = NotificationService(shop: widget.shop);
+
+    await notificationService.sendToken(token: token);
+  }
+
   @override
   void initState() {
     super.initState();
+    sendTokenNotif();
     orderBloc = OrderBloc(widget.shop)..add(FetchOrders());
     scrollController = ScrollController();
   }
