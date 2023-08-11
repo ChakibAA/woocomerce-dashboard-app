@@ -16,7 +16,7 @@ class OrderService {
     AppResponse<Order> result = AppResponse<Order>();
     try {
       String url =
-          "http://10.0.2.2:10018${AppConstants.getOrdersUrl}?token=${shop.key}&page=${page.toString()}";
+          "${shop.url}${AppConstants.getOrdersUrl}?token=${shop.key}&page=${page.toString()}";
 
       if (status != null && status.isNotEmpty) {
         url = '$url&status=$status';
@@ -55,7 +55,7 @@ class OrderService {
   Future<Order?> getOrderID(String id) async {
     try {
       String url =
-          "http://10.0.2.2:10018${AppConstants.getOrderIDUrl}?token=${shop.key}&query_id=$id";
+          "${shop.url}{AppConstants.getOrderIDUrl}?token=${shop.key}&query_id=$id";
 
       var response = await Dio().get(
         url,
@@ -87,7 +87,7 @@ class OrderService {
 
     try {
       String url =
-          "http://10.0.2.2:10018${AppConstants.updateOrdersStatusUrl}?token=${shop.key}&order_id=$id&new_order_status=$status";
+          "${shop.url}${AppConstants.updateOrdersStatusUrl}?token=${shop.key}&order_id=$id&new_order_status=$status";
 
       var response = await Dio().put(
         url,

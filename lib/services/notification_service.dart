@@ -17,7 +17,7 @@ class NotificationService {
 
     try {
       String url =
-          "http://10.0.2.2:10018${AppConstants.sendTokenNotif}?token=${shop.key}&token_notif=$token&";
+          "${shop.url}${AppConstants.sendTokenNotif}?token=${shop.key}&token_notif=$token&";
 
       var response = await Dio().put(
         url,
