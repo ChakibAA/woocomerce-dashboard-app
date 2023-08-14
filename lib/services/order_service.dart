@@ -55,7 +55,7 @@ class OrderService {
   Future<Order?> getOrderID(String id) async {
     try {
       String url =
-          "${shop.url}{AppConstants.getOrderIDUrl}?token=${shop.key}&query_id=$id";
+          "${shop.url}${AppConstants.getOrderIDUrl}?token=${shop.key}&query_id=$id";
 
       var response = await Dio().get(
         url,

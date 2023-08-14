@@ -28,15 +28,29 @@ class ShopListScreen extends StatelessWidget {
   }
 }
 
-class ListShopView extends StatelessWidget {
+class ListShopView extends StatefulWidget {
   const ListShopView({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<ListShopView> createState() => _ListShopViewState();
+}
+
+class _ListShopViewState extends State<ListShopView> {
+  late ShopBloc shopBloc;
+
+  @override
+  void initState() {
+    super.initState();
+
+    shopBloc = context.read<ShopBloc>()..add(FetchShop());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<ShopBloc, ShopState>(
-      bloc: ShopBloc()..add(FetchShop()),
+      bloc: shopBloc,
       listener: (context, state) {
         if (state is ShopError) {
           context.goNamed(AppRoutes.errorScreen);
